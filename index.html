@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style type="text/css">
+        body{
+            background : url('./1.avif');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        h1{
+            font-size:64px;
+            color: rgba(155, 8, 8, 0.855);
+            text-align: center;
+            margin-top: 15%;
+            background-color: white;
+            width:30%;
+            margin-left:35%;
+        }
+        .clock
+        {
+            position:absolute;
+            color: rgb(37, 64, 37);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%); 
+            font-size:60px;
+            letter-spacing: 7px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Digital Clock</h1>
+    <div id="digitalClock" class="clock"></div>
+
+    <script type="text/javascript">
+
+        function showTime(){
+            var date = new Date();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+            var session = "AM";
+            
+            //12 hour format
+            if(hour == 0){
+                hour=12; 
+            }
+            if(hour>12){
+                hour=hour-12;
+                session="PM";
+            }
+
+            //hh:mm:ss format
+            hour = (hour<10) ? "0"+hour : hour;
+            min = (min<10) ? "0"+min : min;
+            sec = (sec<10) ? "0"+sec : sec
+
+            document.getElementById("digitalClock").innerHTML = hour + ":" + min + ":" + sec +" " +session;
+
+            setTimeout(showTime,1000);
+
+        }
+        showTime();
+    </script>
+</body>
+</html>
